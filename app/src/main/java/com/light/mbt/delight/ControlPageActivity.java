@@ -171,9 +171,7 @@ public class ControlPageActivity extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);  //增加左上角返回圖示
 
-        hideSystemNavigationBar();  //隱藏虛擬按鍵
-
-        mAlert = new AlertDialog.Builder(this).create();
+         mAlert = new AlertDialog.Builder(this).create();
         mAlert.setMessage(getResources().getString(
                 R.string.alert_message_bluetooth_reconnect));
         mAlert.setCancelable(false);
@@ -915,22 +913,9 @@ public class ControlPageActivity extends AppCompatActivity {
                 .setPositiveButton(R.string.alertdialog_rename_ok, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        hideSystemNavigationBar();  //隱藏虛擬按鍵
-                    }
+                     }
                 })
                 .show();
-    }
-
-    private void hideSystemNavigationBar() {
-        if (Build.VERSION.SDK_INT > 11 && Build.VERSION.SDK_INT < 19) {
-            View view = this.getWindow().getDecorView();
-            view.setSystemUiVisibility(View.GONE);
-        } else if (Build.VERSION.SDK_INT >= 19) {
-            View decorView = getWindow().getDecorView();
-            int uiOptions = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-                    | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY | View.SYSTEM_UI_FLAG_FULLSCREEN;
-            decorView.setSystemUiVisibility(uiOptions);
-        }
     }
 
 }

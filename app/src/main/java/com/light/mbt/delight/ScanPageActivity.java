@@ -11,7 +11,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -250,7 +249,6 @@ public class ScanPageActivity extends AppCompatActivity {
         setContentView(R.layout.content_scan_main);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);  //增加左上角返回圖示
         //getActionBar().setTitle(R.string.title_devices);  //設定ActionBar 標題
-        hideSystemNavigationBar();  //隱藏虛擬按鍵
 
         mHandler = new Handler();
 
@@ -669,18 +667,6 @@ public class ScanPageActivity extends AppCompatActivity {
         } else {
             if (mAlert != null && mAlert.isShowing())
                 mAlert.dismiss();
-        }
-    }
-
-    private void hideSystemNavigationBar() {
-        if (Build.VERSION.SDK_INT > 11 && Build.VERSION.SDK_INT < 19) {
-            View view = this.getWindow().getDecorView();
-            view.setSystemUiVisibility(View.GONE);
-        } else if (Build.VERSION.SDK_INT >= 19) {
-            View decorView = getWindow().getDecorView();
-            int uiOptions = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-                    | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY | View.SYSTEM_UI_FLAG_FULLSCREEN;
-            decorView.setSystemUiVisibility(uiOptions);
         }
     }
 }

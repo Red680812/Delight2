@@ -164,7 +164,6 @@ public class UseDevicePageActivity extends AppCompatActivity
         setContentView(R.layout.activity_use_device);
 
         checkBleSupportAndInitialize();
-        hideSystemNavigationBar();  //隱藏虛擬按鍵
 
         initDrawer();
 
@@ -389,7 +388,7 @@ public class UseDevicePageActivity extends AppCompatActivity
         Bundle bundle = new Bundle();
         bundle.putSerializable("DeviceList", mDeviceList);  //將DeviceList 傳到ControlPageActivity
         intent.putExtras(bundle);
-        //\finish();
+        //finish();
         overridePendingTransition(R.anim.slide_right, R.anim.push_right);
         startActivity(intent);
         overridePendingTransition(R.anim.slide_left, R.anim.push_left);
@@ -440,7 +439,6 @@ public class UseDevicePageActivity extends AppCompatActivity
     public void onResume() {
         Logger.i(TAG, "UseDevice onResume");
         Logger.i(TAG, "BLE Connection State---->" + BluetoothLeService.getConnectionState());
-        hideSystemNavigationBar();  //隱藏虛擬按鍵
 
         if (checkBluetoothStatus()) {
             mScanDeviceFind = true;
@@ -646,8 +644,7 @@ public class UseDevicePageActivity extends AppCompatActivity
         mLeDeviceListAdapter.notifyDataSetChanged();
         mSelectItem = false;
         invalidateOptionsMenu();    //重新载入Menu
-        hideSystemNavigationBar();  //隱藏虛擬按鍵
-    }
+     }
 
     public void cleanReName(View view) {
         Logger.i(TAG, editText.getText().toString());
@@ -679,6 +676,7 @@ public class UseDevicePageActivity extends AppCompatActivity
         }
     }
 
+    //自動隱藏虛擬按鍵
     private void hideSystemNavigationBar() {
         if (Build.VERSION.SDK_INT > 11 && Build.VERSION.SDK_INT < 19) {
             View view = this.getWindow().getDecorView();
